@@ -78,7 +78,7 @@
 		letter-spacing: 2rem;
 		font-weight: bold;
 	}
-	
+
 	</style>
 </head>
 <body>
@@ -122,20 +122,22 @@
 		today=new Date();
 		firstDay=new Date(year,month,date);
 		deepth=today.getTime()-firstDay.getTime();
+		console.log(deepth/1000/60/60/24);
 		return deepth/1000/60/60/24;
+
 	}
 	//1024更新时间函数
-	function UpdateTime(year,month,date){
+	function UpdateTime(year,month,date,interval){
 		function load(){
-			var deepthDays=Deepth(year,month,date).toFixed(9);
+			var deepthDays=Deepth(year,month,date).toFixed(7);
 			oToday.innerHTML=deepthDays;
 		}
 		load();
 		setInterval(function(){
 			load();
-		},1024)
+		},interval)
 	}
-	UpdateTime(2017,9,18);
+	UpdateTime(2017,9,18,100);
 
 
 
