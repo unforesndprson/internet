@@ -115,7 +115,7 @@
 <script type="text/javascript">
 	'use strict';
 
-	var oToday=document.querySelector('.today');
+
 	// deepth函数
 	function Deepth(year,month,date){
 		var today,firstDay,deepth;
@@ -124,10 +124,10 @@
 		deepth=today.getTime()-firstDay.getTime();
 		console.log(deepth/1000/60/60/24);
 		return deepth/1000/60/60/24;
-
 	}
 	//更新时间函数
 	function UpdateTime(year,month,date,interval){
+		var oToday=document.querySelector('.today');
 		function load(){
 			var deepthDays=Deepth(year,month,date).toFixed(7);
 			oToday.innerHTML=deepthDays;
