@@ -70,10 +70,20 @@
 	.sound--off {
 	  text-decoration: line-through;
 	}
+	.today{
+		font-size: 6rem;
+		position: absolute;
+		top:30%;
+		color:rgb(231, 70, 64);
+		letter-spacing: 2rem;
+		font-weight: bold;
+	}
 	</style>
 </head>
 <body>
+	<div class="today"></div>
 	 <div class="container">
+
 	  <svg class="svg-container" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200">
 	    <line class="line line--left" x1="10" y1="17" x2="10" y2="183"> </line>
 	    <line class="line line--rght" x1="490" y1="17" x2="490" y2="183"> </line>
@@ -103,6 +113,32 @@
 <script src="https://cdn.bootcss.com/mo-js/0.288.2/mo.min.js"></script>
 <script type="text/javascript">
 	'use strict';
+
+	var oToday=document.querySelector('.today');
+	// deepth函数
+	function Deepth(year,month,date){
+		var today,firstDay,deepth;
+		today=new Date();
+		firstDay=new Date(year,month,date);
+		deepth=today.getTime()-firstDay.getTime();
+		return deepth/1000/60/60/24;
+	}
+	//1024更新时间函数
+	function UpdateTime(year,month,date){
+		function load(){
+			var deepthDays=Deepth(year,month,date).toFixed(8);
+			oToday.innerHTML=deepthDays;
+		}
+		load();
+		setInterval(function(){
+			load();
+		},1024)
+	}
+	UpdateTime(2017,9,18);
+
+
+
+
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
