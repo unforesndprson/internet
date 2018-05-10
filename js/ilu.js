@@ -24,7 +24,7 @@ function UpdateTime(year, month, date, interval) {
 }
 UpdateTime(2017, 9, 18, 102.4);
 
-
+// 天气接口
 $(function() {
     $.ajax({
         url: 'https://free-api.heweather.com/s6/weather/now',
@@ -39,9 +39,31 @@ $(function() {
         console.log(res.HeWeather6[0].now);
         var data = res.HeWeather6[0].now;
 
-        $('.weather img').attr('src', 'images/' + data.cond_code + '.png');
+        $('.w1 img').attr('src', 'images/' + data.cond_code + '.png');
+        $('.w1 p span').html(data.tmp);
+    })
+    $.ajax({
+        url: 'https://free-api.heweather.com/s6/weather/forecast',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            location: '福州',
+            key: '60d93e48df57402aa6a917addf87c7a3'
+        },
+
+    }).success(function(res) {
+        console.log(res.HeWeather6[0].daily_forecast[1].cond_code_d);
+        var data1 = res.HeWeather6[0].daily_forecast[1];
+        var data2 = res.HeWeather6[0].daily_forecast[2];
+        $('.w2 img').attr('src', 'images/' + data1.cond_code + '.png');
+        $('.w2 p span').html(data1.tmp_min + '-' + data1.tmp_max);
+        $('.w3 img').attr('src', 'images/' + data2.cond_code + '.png');
+        $('.w3 p span').html(data2.tmp_min + '-' + data2.tmp_max);
     })
 })
+
+// 天气接口end
+
 
 var _extends = Object.assign || function(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
