@@ -23,26 +23,7 @@ function UpdateTime(year, month, date, interval) {
     }, interval)
 }
 UpdateTime(2017, 9, 18, 102.4);
-$(function() {
-    $.ajax({
-        url: 'https://free-api.heweather.com/s6/weather/now',
-        type: 'post',
-        dataType: 'json',
-        data: {
-            location: '福州',
-            key: '60d93e48df57402aa6a917addf87c7a3'
-        },
-
     }).success(function(res) {
-        console.log(res.HeWeather6[0].now);
-        var data = res.HeWeather6[0].now;
-
-        $('.weather img').attr('src', 'images/' + data.cond_code + '.png');
-    })
-})
-
-
-
 
 
 var _extends = Object.assign || function(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
