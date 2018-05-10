@@ -35,9 +35,9 @@ $(function() {
 
     }).success(function(res) {
         console.log(res);
-        // var data = res.HeWeather6[0].daily_forecast;
-        // var oimg = document.querySelector('.weather img');
-        // oimg.src = data[0].
+        var data = res.HeWeather6[0].now;
+        var oimg = document.querySelector('.weather img');
+        oimg.src = 'images/' + data.cond_code + '.png';
     })
 })
 
