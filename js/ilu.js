@@ -25,7 +25,7 @@ function UpdateTime(year, month, date, interval) {
 UpdateTime(2017, 9, 18, 102.4);
 $(function() {
     $.ajax({
-        url: 'https://free-api.heweather.com/s6/weather/forecast',
+        url: 'https://free-api.heweather.com/s6/weather/now',
         type: 'post',
         dataType: 'json',
         data: {
@@ -34,7 +34,10 @@ $(function() {
         },
 
     }).success(function(res) {
-        console.log(res)
+        console.log(res);
+        // var data = res.HeWeather6[0].daily_forecast;
+        // var oimg = document.querySelector('.weather img');
+        // oimg.src = data[0].
     })
 })
 
