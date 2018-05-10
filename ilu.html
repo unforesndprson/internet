@@ -1,91 +1,99 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Demos For U</title>
-	<style type="text/css">
-	 *, *:before, *:after {
-	  box-sizing: border-box;
-	  margin: 0;
-	  padding: 0;
-	}
-
-	html, body {
-	  min-height: 100vh;
-	  display: -webkit-box;
-	  display: -ms-flexbox;
-	  display: flex;
-	  -webkit-box-pack: center;
-	      -ms-flex-pack: center;
-	          justify-content: center;
-	  -webkit-box-align: center;
-	      -ms-flex-align: center;
-	          align-items: center;
-	  background-color: #FFC568;
-	  font-size: 62.5%;
-	  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	}
-	@media screen and (max-width: 520px) {
-	  html, body {
-	    /* don't know how to set default units to rem in mojs :(( */
-	  }
-	}
-
-	.container {
-	  width: 50rem;
-	  height: 20rem;
-	  position: relative;
-	}
-
-	.svg-container {
-	  z-index: 2;
-	  position: absolute;
-	}
-
-	.mo-container {
-	  width: 100%;
-	  height: 100%;
-	}
-
-	.line {
-	  fill: none;
-	  stroke: #FFFFFF;
-	  stroke-width: 8;
-	  stroke-linecap: round;
-	  stroke-miterlimit: 10;
-	}
-
-	.lttr {
-	  fill: #763C8C;
-	}
-
-	.sound {
-	  position: fixed;
-	  color: #763C8C;
-	  font-size: 1.6rem;
-	  bottom: 1rem;
-	  right: 1rem;
-	  text-decoration: underline;
-	  cursor: default;
-	}
-	.sound--off {
-	  text-decoration: line-through;
-	}
-	.today{
-		font-size: 6rem;
-		position: absolute;
-		top:20%;
-		color:rgb(231, 70, 64);
-		letter-spacing: 2rem;
-		font-weight: bold;
-	}
-
-	</style>
+    <title>Demos For U</title>
+    <style type="text/css">
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body {
+            min-height: 100vh;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background-color: #FFC568;
+            font-size: 62.5%;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        
+        @media screen and (max-width: 520px) {
+            html,
+            body {
+                /* don't know how to set default units to rem in mojs :(( */
+            }
+        }
+        
+        .container {
+            width: 50rem;
+            height: 20rem;
+            position: relative;
+        }
+        
+        .svg-container {
+            z-index: 2;
+            position: absolute;
+        }
+        
+        .mo-container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .line {
+            fill: none;
+            stroke: #FFFFFF;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-miterlimit: 10;
+        }
+        
+        .lttr {
+            fill: #763C8C;
+        }
+        
+        .sound {
+            position: fixed;
+            color: #763C8C;
+            font-size: 1.6rem;
+            bottom: 1rem;
+            right: 1rem;
+            text-decoration: underline;
+            cursor: default;
+        }
+        
+        .sound--off {
+            text-decoration: line-through;
+        }
+        
+        .today {
+            font-size: 6rem;
+            position: absolute;
+            top: 20%;
+            color: rgb(231, 70, 64);
+            letter-spacing: 2rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body>
-	<div class="today"></div>
-	 <div class="container">
 
-	  <svg class="svg-container" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200">
+<body>
+    <div class="today"></div>
+    <div class="container">
+
+        <svg class="svg-container" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200">
 	    <line class="line line--left" x1="10" y1="17" x2="10" y2="183"> </line>
 	    <line class="line line--rght" x1="490" y1="17" x2="490" y2="183"> </line>
 	    <g>
@@ -99,18 +107,19 @@
 	      <path class="lttr lttr--U" d="M412.4,101.1V73.9h11.4v26.7c0,10.9,2.4,15.9,11.5,15.9c8.4,0,11.4-4.6,11.4-15.8V73.9h11v26.9c0,7.8-1.1,13.5-4,17.7c-3.7,5.3-10.4,8.4-18.7,8.4c-8.4,0-15.1-3.1-18.8-8.5C413.4,114.2,412.4,108.5,412.4,101.1z"></path>
 	    </g>
 	  </svg>
-	  <div class="mo-container"> </div>
-	</div>
+        <div class="mo-container"> </div>
+    </div>
 
 
-	<audio class="blup" style="display: none">
+    <audio class="blup" style="display: none">
 	  <source src="https://www.freesound.org/data/previews/265/265115_4373976-lq.mp3" type="audio/ogg">
 	</audio >
 	<audio class="blop" style="display: none">
 	  <source src="https://www.freesound.org/data/previews/265/265115_4373976-lq.mp3" type="audio/ogg">
 	</audio>
-	<div class="sound">sound</div>
+    <div class="sound">sound</div>
 </body>
 <script src="https://cdn.bootcss.com/mo-js/0.288.2/mo.min.js"></script>
 <script src="ilu.js"></script>
+
 </html>
