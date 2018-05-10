@@ -36,7 +36,6 @@ $(function() {
         },
 
     }).success(function(res) {
-        console.log(res.HeWeather6[0].now);
         var data = res.HeWeather6[0].now;
 
         $('.w1 img').attr('src', 'images/' + data.cond_code + '.png');
@@ -52,7 +51,6 @@ $(function() {
         },
 
     }).success(function(res) {
-        console.log(res.HeWeather6[0].daily_forecast[1].cond_code_d);
         var data1 = res.HeWeather6[0].daily_forecast[1];
         var data2 = res.HeWeather6[0].daily_forecast[2];
         $('.w2 img').attr('src', 'images/' + data1.cond_code_d + '.png');
