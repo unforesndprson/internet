@@ -34,10 +34,10 @@ $(function() {
         },
 
     }).success(function(res) {
-        console.log(res);
+        console.log(res.HeWeather6[0].now);
         var data = res.HeWeather6[0].now;
-        var oimg = document.querySelector('.weather img');
-        oimg.src = 'images/' + data.cond_code + '.png';
+
+        $('.weather img').attr('src', 'images/' + data.cond_code + '.png');
     })
 })
 
