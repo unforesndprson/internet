@@ -55,9 +55,9 @@ $(function() {
         console.log(res.HeWeather6[0].daily_forecast[1].cond_code_d);
         var data1 = res.HeWeather6[0].daily_forecast[1];
         var data2 = res.HeWeather6[0].daily_forecast[2];
-        $('.w2 img').attr('src', 'images/' + data1.cond_code + '.png');
+        $('.w2 img').attr('src', 'images/' + data1.cond_code_d + '.png');
         $('.w2 p span').html(data1.tmp_min + '-' + data1.tmp_max);
-        $('.w3 img').attr('src', 'images/' + data2.cond_code + '.png');
+        $('.w3 img').attr('src', 'images/' + data2.cond_code_d + '.png');
         $('.w3 p span').html(data2.tmp_min + '-' + data2.tmp_max);
     })
 })
