@@ -45,7 +45,6 @@ $(function() {
         });
         // mapObj.addControl(geolocation);
         geolocation.getCurrentPosition(function(status, res) {
-            console.log(status, res);
             if (status == 'complete') {
                 myLocation = res.position;
             } else if (status == 'error') {
@@ -72,7 +71,7 @@ $(function() {
             $('.w1 img').attr('src', 'images/' + data.cond_code + '.png');
             $('.w1 p span').html(data.tmp);
             $('.wload').hide();
-            $('w1').fadeIn();
+            $('.w1').fadeIn();
         })
         $.ajax({
             url: 'https://free-api.heweather.com/s6/weather/forecast',
