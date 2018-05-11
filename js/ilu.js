@@ -18,7 +18,6 @@ function enryptData(params) {
 
     var sign = md5(paramsStrExceptSign + OKAYAPI_APP_SECRECT).toUpperCase();
     params['sign'] = sign;
-    params['data'] = encodeURI(params['data']);
     return params;
 }
 // deepth函数
