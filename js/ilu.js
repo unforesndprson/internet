@@ -12,7 +12,7 @@ function enryptData(params) {
 
     var sdic = Object.keys(params).sort();
     var paramsStrExceptSign = "";
-    for (i in sdic) {
+    for (var i in sdic) {
         paramsStrExceptSign += params[sdic[i]];
     }
 
