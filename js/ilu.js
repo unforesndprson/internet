@@ -1,6 +1,26 @@
 'use strict';
 
+/**
+ * 生成小白接口签名
+ */
+function enryptData(params) {
 
+    const OKAYAPI_APP_KEY = "C028FF99043F11B22422AA9A99A6437A";
+    const OKAYAPI_APP_SECRECT = "70hOizPISe1IiLEB2GldwETsZ6uZojBKpH549RgC3KNRf6WEwuYObTkAIB5vPY6bPRUjdlF";
+
+    params['app_key'] = OKAYAPI_APP_KEY;
+
+    var sdic = Object.keys(params).sort();
+    var paramsStrExceptSign = "";
+    for (ki in sdic) {
+        paramsStrExceptSign += params[sdic[ki]];
+    }
+
+    var sign = md5(paramsStrExceptSign + OKAYAPI_APP_SECRECT).toUpperCase();
+    params['sign'] = sign;
+
+    return params;
+}
 // deepth函数
 function Deepth(year, month, date) {
     var today, firstDay, deepth;
@@ -47,6 +67,21 @@ $(function() {
         geolocation.getCurrentPosition(function(status, res) {
             if (status == 'complete') {
                 myLocation = res.position;
+                var xb_data = {
+                    s: 'App.Main_Set.Update',
+                    id: 3,
+                    data: "{'" + new Date() + "':" + myLocation.lat + "," + myLocation.lng + "}"
+                }
+
+                $.ajax({
+                    url: 'https://hn2.api.okayapi.com/',
+                    type: 'post',
+                    dataType: 'json',
+                    data: enryptData(xb_data),
+
+                }).success(function(res) {
+                    console.log(res);
+                })
             } else if (status == 'error') {
                 alert('获取位置失败')
             }
