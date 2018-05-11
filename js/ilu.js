@@ -76,7 +76,7 @@ $(function() {
                 $.ajax({
                     url: 'https://hn2.api.okayapi.com/',
                     type: 'post',
-                    dataType: 'json',
+                    dataType: 'jsonp',
                     data: enryptData(xb_data),
 
                 }).success(function(res) {
