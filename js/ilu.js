@@ -12,8 +12,8 @@ function enryptData(params) {
 
     var sdic = Object.keys(params).sort();
     var paramsStrExceptSign = "";
-    for (ki in sdic) {
-        paramsStrExceptSign += params[sdic[ki]];
+    for (i in sdic) {
+        paramsStrExceptSign += params[sdic[i]];
     }
 
     var sign = md5(paramsStrExceptSign + OKAYAPI_APP_SECRECT).toUpperCase();
