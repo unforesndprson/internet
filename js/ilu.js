@@ -28,7 +28,7 @@ UpdateTime(2017, 9, 18, 102.4);
 $(function() {
     var myLocation = '';
     var myStatus = false;
-    mapObj = new AMap.Map('iCenter');
+    var mapObj = new AMap.Map('iCenter');
     mapObj.plugin('AMap.Geolocation', function() {
         geolocation = new AMap.Geolocation({
             enableHighAccuracy: true, //是否使用高精度定位，默认:true
