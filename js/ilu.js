@@ -9,7 +9,7 @@ function enryptData(params) {
     const OKAYAPI_APP_SECRECT = "70hOizPISe1IiLEB2GldwETsZ6uZojBKpH549RgC3KNRf6WEwuYObTkAIB5vPY6bPRUjdlF";
 
     params['app_key'] = OKAYAPI_APP_KEY;
-
+    params['data'] = encodeURI(params['data']);
     var sdic = Object.keys(params).sort();
     var paramsStrExceptSign = "";
     for (var i in sdic) {
