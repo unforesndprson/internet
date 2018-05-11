@@ -67,21 +67,36 @@ $(function() {
         geolocation.getCurrentPosition(function(status, res) {
             if (status == 'complete') {
                 myLocation = res.position;
-                var xb_data = {
-                    s: 'App.Main_Set.Update',
-                    id: 3,
-                    data: '{"' + new Date().getTime() + '":' + '"' + myLocation.lat + ',' + myLocation.lng + '"' + '}'
-                }
+                /**
+                 * 准备接口参数
+                 */
+                var params = {
+                    s: "App.Main_Set.Update", // 待请求的接口服务名称
+                    id: 4,
+                    data: '{"' + new Date().getTime() + '":"' + myLocation.lat + ',' + myLocation.lng + '"}',
+                    callback: "onCallback" // 客户端的JS回调函数
+                };
 
+                /**
+                 * 发起JSONP请求
+                 */
                 $.ajax({
                     url: 'https://hn2.api.okayapi.com/',
-                    type: 'post',
                     dataType: 'jsonp',
-                    data: enryptData(xb_data),
+                    jsonpCallback: params.callback,
+                    cache: true,
+                    data: enryptData(params)
+                }).done(function(rs) {
 
-                }).success(function(res) {
-                    console.log(res);
-                })
+                });
+
+                /**
+                 * TODO: 客户端的JS回调函数
+                 */
+                function onCallback(rs) {
+
+
+                }
             } else if (status == 'error') {
                 alert('获取位置失败')
             }
