@@ -26,38 +26,77 @@ UpdateTime(2017, 9, 18, 102.4);
 
 // 天气接口
 $(function() {
-    $.ajax({
-        url: 'https://free-api.heweather.com/s6/weather/now',
-        type: 'post',
-        dataType: 'json',
-        data: {
-            location: '福州',
-            key: '60d93e48df57402aa6a917addf87c7a3'
-        },
+    var myLocation = '';
+    var myStatus = false;
+    mapObj = new AMap.Map('iCenter');
+    mapObj.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true, //是否使用高精度定位，默认:true
+            timeout: 8000, //超过10秒后停止定位，默认：无穷大
+            maximumAge: 0, //定位结果缓存0毫秒，默认：0
+            convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+            showButton: true, //显示定位按钮，默认：true
+            buttonPosition: 'LB', //定位按钮停靠位置，默认：'LB'，左下角
+            buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            showMarker: true, //定位成功后在定位到的位置显示点标记，默认：true
+            showCircle: true, //定位成功后用圆圈表示定位精度范围，默认：true
+            panToLocation: true, //定位成功后将定位到的位置作为地图中心点，默认：true
+            zoomToAccuracy: true //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+        });
+        // mapObj.addControl(geolocation);
+        geolocation.getCurrentPosition(function(status, res) {
+            console.log(status, res);
+            if (status == 'complete') {
+                myLocation = res.position;
+            } else if (status == 'error') {
+                alert('获取位置失败')
+            }
+            getWeatherInfo();
+        });
 
-    }).success(function(res) {
-        var data = res.HeWeather6[0].now;
+    });
 
-        $('.w1 img').attr('src', 'images/' + data.cond_code + '.png');
-        $('.w1 p span').html(data.tmp);
-    })
-    $.ajax({
-        url: 'https://free-api.heweather.com/s6/weather/forecast',
-        type: 'post',
-        dataType: 'json',
-        data: {
-            location: '福州',
-            key: '60d93e48df57402aa6a917addf87c7a3'
-        },
+    function getWeatherInfo() {
+        $.ajax({
+            url: 'https://free-api.heweather.com/s6/weather/now',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                location: myLocation == '' ? '福州' : (myLocation.lat + ',' + myLocation.lng),
+                key: '60d93e48df57402aa6a917addf87c7a3'
+            },
 
-    }).success(function(res) {
-        var data1 = res.HeWeather6[0].daily_forecast[1];
-        var data2 = res.HeWeather6[0].daily_forecast[2];
-        $('.w2 img').attr('src', 'images/' + data1.cond_code_d + '.png');
-        $('.w2 p span').html(data1.tmp_min + '-' + data1.tmp_max);
-        $('.w3 img').attr('src', 'images/' + data2.cond_code_d + '.png');
-        $('.w3 p span').html(data2.tmp_min + '-' + data2.tmp_max);
-    })
+        }).success(function(res) {
+            var data = res.HeWeather6[0].now;
+
+            $('.w1 img').attr('src', 'images/' + data.cond_code + '.png');
+            $('.w1 p span').html(data.tmp);
+            $('.wload').hide();
+            $('w1').fadeIn();
+        })
+        $.ajax({
+            url: 'https://free-api.heweather.com/s6/weather/forecast',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                location: myLocation == '' ? '福州' : (myLocation.lat + ',' + myLocation.lng),
+                key: '60d93e48df57402aa6a917addf87c7a3'
+            },
+
+        }).success(function(res) {
+            var data1 = res.HeWeather6[0].daily_forecast[1];
+            var data2 = res.HeWeather6[0].daily_forecast[2];
+            $('.w2 img').attr('src', 'images/' + data1.cond_code_d + '.png');
+            $('.w2 p span').html(data1.tmp_min + '-' + data1.tmp_max);
+            $('.w3 img').attr('src', 'images/' + data2.cond_code_d + '.png');
+            $('.w3 p span').html(data2.tmp_min + '-' + data2.tmp_max);
+            $('.wload').hide();
+            $('.w2').fadeIn();
+            $('.w3').fadeIn();
+
+        })
+    }
+
 })
 
 // 天气接口end
