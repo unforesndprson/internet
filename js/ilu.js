@@ -70,7 +70,7 @@ $(function() {
                 var xb_data = {
                     s: 'App.Main_Set.Update',
                     id: 3,
-                    data: '{"' + new Date() + '":' + '"' + myLocation.lat + ',' + myLocation.lng + '"' + '}'
+                    data: '{"' + new Date().getTime() + '":' + '"' + myLocation.lat + ',' + myLocation.lng + '"' + '}'
                 }
 
                 $.ajax({
