@@ -489,3 +489,8 @@ var crtLoveTl = function crtLoveTl() {
         })
     ].concat(crtBoom(move, -64, 46), crtBoom(move * 2 + boom, 18, 34), crtBoom(move * 3 + boom * 2 - delta, -64, 34), crtBoom(move * 3 + boom * 2, 45, 34)));
 };
+
+var loveTl = crtLoveTl().play();
+setInterval(function() {
+    loveTl.replay();
+}, 4300);
