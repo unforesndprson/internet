@@ -180,8 +180,19 @@
     </div>
     <div id="iCenter" style="display: none;"></div>
 
-
-
+    <audio style="display:none; height: 0" id="bg-music" preload="auto" src="https://js.18183.com/test/beautifulPartner.mp3" loop="loop"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function audioAutoPlay() {
+                var audio = document.getElementById('bg-music');
+                audio.play();
+                document.addEventListener("WeixinJSBridgeReady", function() {
+                    audio.play();
+                }, false);
+            }
+            audioAutoPlay();
+        });
+    </script>
 </body>
 <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
