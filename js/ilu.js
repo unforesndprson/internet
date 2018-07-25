@@ -494,3 +494,27 @@ var loveTl = crtLoveTl().play();
 setInterval(function() {
     loveTl.replay();
 }, 4300);
+var volume = 0.2;
+el.blup.volume = volume;
+el.blop.volume = volume;
+
+var toggleSound = function toggleSound() {
+    var on = true;
+    var audio = document.getElementById('bg-music');
+    return function() {
+        if (on) {
+            el.blup.volume = 0.0;
+            el.blop.volume = 0.0;
+            el.sound.classList.add('sound--off');
+
+            audio.pause();
+        } else {
+            el.blup.volume = volume;
+            el.blop.volume = volume;
+            el.sound.classList.remove('sound--off');
+            audio.play();
+        }
+        on = !on;
+    };
+};
+el.sound.addEventListener('click', toggleSound());
