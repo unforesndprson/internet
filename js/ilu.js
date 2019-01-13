@@ -23,7 +23,7 @@ function enryptData(params) {
 // deepth函数
 function Deepth(year, month, date) {
     var today, firstDay, deepth;
-    today = new Date();
+    today = new Date(2019,0,13,13);
     firstDay = new Date(year, month, date);
     deepth = today.getTime() - firstDay.getTime();
     return deepth / 1000 / 60 / 60 / 24;
